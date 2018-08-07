@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
   def goodbye
     render html: "Be gone, satan!!!"
   end
+
+  def fire_worker
+    SimpleWorker.perform_async()
+    render html: "Worker should be fired right about now"
+  end
 end
