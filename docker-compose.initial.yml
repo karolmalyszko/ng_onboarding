@@ -10,6 +10,7 @@ services:
 
   redis:
     image: 'redis:alpine'
+    container_name: redis
 #    command: redis-server --requirepass yourpassword
 #~    command: redis-server
     volumes:
@@ -20,12 +21,12 @@ services:
 #      - 'postgres'
       - 'redis'
     build: .
+    environment:
+      REDIS_URL: redis://redis:6379
     ports:
       - '3000:3000'
 #    volumes:
 #      - '.:/app'
-    env_file:
-      - '.env'
 
   sidekiq:
 #    <<: *base
@@ -35,6 +36,8 @@ services:
     build: .
 #    command: sidekiq -C config/sidekiq.yml.erb
     command: sidekiq -C config/sidekiq.yml
+    environment:
+      REDIS_URL: redis://redis:6379
 #    volumes:
 #      - '.:/app'
 #    env_file:

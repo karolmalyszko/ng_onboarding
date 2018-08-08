@@ -7,8 +7,8 @@ RUN apt update && apt install -y build-essential git
 RUN mkdir /app
 WORKDIR /app
 
-#COPY Gemfile Gemfile.lock ./
-COPY Gemfile ./
+COPY Gemfile Gemfile.lock ./
+#COPY Gemfile ./
 #RUN bundle install --binstubs
 RUN bundle install
 #RUN bundle

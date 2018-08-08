@@ -37,8 +37,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'sidekiq'
-gem 'sinatra', '1.4.8', github: 'sinatra/sinatra'
-gem 'rack-protection', '>=1.5.0', github: 'sinatra/sinatra'
+gem 'sinatra'
+gem 'rack-protection'
 
 
 
