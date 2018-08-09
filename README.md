@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Crude and dirty, but fullfills all the requirements ;)
 
-Things you may want to cover:
+Included are ::
+* sidekiq with dashboard, available at /sidekiq
+* crono, also with dashboard, although not working as expected, at /crono
+* redis for key-value store
 
-* Ruby version
+Crono fires up a sidekiq worker every 10 seconds and puts some gibberish to stdout.
+Number of fired tasks can be tracked from sidekiq dashboard.
 
-* System dependencies
+Usage ::
+* clone the repo
+* docker-compose up
+* done :)
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Ruby version :: ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-linux]
+* Rails version :: 5.2.0
