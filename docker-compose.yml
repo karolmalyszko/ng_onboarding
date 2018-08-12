@@ -7,16 +7,30 @@ services:
     volumes:
       - 'redis:/data'
 
-  website:
+  website: &baseimage
     depends_on:
       - 'redis'
+      - 'postgres'
     build: .
     environment:
       REDIS_URL: redis://redis:6379
+      POSTGRES_DATABASE: 'rails_app'
+      POSTGRES_USER: 'ror'
+      POSTGRES_PASSWORD: 'QqmKfKu7GJvHs6MbCGmzhHvnCWvhB4yg'
+      POSTGRES_HOST: 'postgres'
+      RAILS_PUMA_PORT: '3000'
+      RAILS_ENV: 'development'
     # dołożyć normalną bazę -> postgres
+    # osobny kontener do migracji bazy danych
     # connection-stringi i credentiale w ramach zmiennych środowiskowych; na razie może być w docker-compose, docelowo w .env
 #    ports:
 #      - '3000:3000'
+
+  run_migrations:
+    <<: *baseimage
+    command: rake db:migrate
+    depends_on:
+      - 'postgres'
 
   nginx:
     build:
@@ -40,6 +54,22 @@ services:
     command: bundle exec crono
     environment:
       REDIS_URL: redis://redis:6379
+      POSTGRES_DATABASE: 'rails_app'
+      POSTGRES_USER: 'ror'
+      POSTGRES_PASSWORD: 'QqmKfKu7GJvHs6MbCGmzhHvnCWvhB4yg'
+      POSTGRES_HOST: 'postgres'
+    depends_on:
+      - 'postgres'      
+
+  postgres:
+    image: 'postgres:10.3-alpine'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_DATABASE: 'rails_app'
+      POSTGRES_USER: 'ror'
+      POSTGRES_PASSWORD: 'QqmKfKu7GJvHs6MbCGmzhHvnCWvhB4yg'
+      POSTGRES_HOST: 'postgres'
 
 volumes:
   redis:
