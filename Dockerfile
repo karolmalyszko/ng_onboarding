@@ -1,7 +1,6 @@
 FROM ruby:2.5
-# change to use ruby-apline image??
 
-RUN apt update && apt install -y build-essential git
+RUN apt update && apt install -y build-essential
 
 RUN mkdir /app
 WORKDIR /app

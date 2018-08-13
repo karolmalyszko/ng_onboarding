@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   redis:
@@ -59,7 +59,7 @@ services:
       POSTGRES_PASSWORD: 'QqmKfKu7GJvHs6MbCGmzhHvnCWvhB4yg'
       POSTGRES_HOST: 'postgres'
     depends_on:
-      - 'postgres'      
+      - 'postgres'
 
   postgres:
     image: 'postgres:10.3-alpine'

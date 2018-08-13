@@ -1,6 +1,6 @@
 # README
 
-Crude and dirty, but fullfills all the requirements ;)
+Crude and dirty, but fulfils all the requirements ;)
 
 Included are ::
 * sidekiq, with dashboard available at /sidekiq
