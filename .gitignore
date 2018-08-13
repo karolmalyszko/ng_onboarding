@@ -28,3 +28,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/terraform/.terraform
+/terraform/variables.tf
+/terraform/.terraform.tfstate.lock.info
+/terraform/terraform.tfstate.*
